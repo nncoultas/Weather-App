@@ -39,7 +39,6 @@ const WeatherCard = props => {
   return (
     <div className={classes.weatherWrapper}>
       <Card className={classes.card}>
-        {console.log(props)}
         <CardContent>
           <Typography className={classes.dateStyle}>
             {moment
