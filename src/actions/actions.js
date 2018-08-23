@@ -1,8 +1,8 @@
-import key from '../config';
+import { darkSkyKey } from '../config';
 import axios from 'axios';
 
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
-const ROOT_URL = `https://api.darksky.net/forecast/${key}/`;
+const ROOT_URL = `https://api.darksky.net/forecast/${darkSkyKey}/`;
 
 export const GET_CURRENT_WEATHER = 'GET_CURRENT_WEATHER';
 

@@ -22,7 +22,6 @@ class CurrentWeather extends Component {
   render() {
     return (
       <div className="weatherStyles">
-        {console.log(this.props)}
         {this.props.weather.map((currentWeather, index) => {
           return <WeatherCard key={index} currentWeather={currentWeather} />;
         })}

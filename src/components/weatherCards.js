@@ -5,11 +5,12 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { withStyles } from '@material-ui/core/styles';
+import moment from 'moment';
 
 const styles = {
   card: {
-    width: '45%',
-    height: '100%',
+    width: '75%',
+    height: '39%',
     marginTop: '5%'
   },
   weatherWrapper: {
@@ -17,6 +18,19 @@ const styles = {
     width: '100%',
     display: 'flex',
     justifyContent: 'center'
+  },
+  textSize: {
+    fontSize: '2.5rem'
+  },
+  textStyle: {
+    marginTop: '19%',
+    marginBottom: '16%'
+  },
+  dateStyle: {
+    background: 'blue',
+    color: 'white',
+    height: '14%',
+    fontSize: '2rem'
   }
 };
 
@@ -25,10 +39,21 @@ const WeatherCard = props => {
   return (
     <div className={classes.weatherWrapper}>
       <Card className={classes.card}>
+        {console.log(props)}
         <CardContent>
-          <Typography>{props.currentWeather.temperatureMax}</Typography>
-          <Typography color="textSecondary">
-            {props.currentWeather.temperatureMin}
+          <Typography className={classes.dateStyle}>
+            {moment
+              .unix(props.currentWeather.time)
+              .utc()
+              .format('ddd, DDMMM')}
+          </Typography>
+          <Typography className={`${classes.textSize} ${classes.textStyle}`}>
+            {props.currentWeather.temperatureMax.toFixed(0)}
+            &deg;
+          </Typography>
+          <Typography className={classes.textSize} color="textSecondary">
+            {props.currentWeather.temperatureMin.toFixed(0)}
+            &deg;
           </Typography>
           <Typography component="p" />
         </CardContent>
