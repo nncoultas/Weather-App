@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { getCurrentWeather, searchLocation } from '../actions/actions.js';
+import {
+  getCurrentWeather,
+  searchLocation,
+  deleteLocation
+} from '../actions/actions.js';
 import WeatherCard from '../components/weatherCards';
 import NewWeather from '../components/newWeather';
 import SearchLocation from '../components/searchLocation';
@@ -8,7 +12,8 @@ import './currentWeather.css';
 
 class CurrentWeather extends Component {
   state = {
-    location: ''
+    location: '',
+    disableSaveLocation: false
   };
 
   componentDidMount() {
@@ -31,8 +36,13 @@ class CurrentWeather extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    this.setState({ location: this.state.location });
+    this.setState({ location: this.state.location, disableSaveLocation: true });
     this.props.searchLocation(this.state.location);
+  };
+
+  handleDelete = () => {
+    this.setState({ disableSaveLocation: false });
+    this.props.deleteLocation();
   };
 
   render() {
@@ -46,11 +56,19 @@ class CurrentWeather extends Component {
             location={this.state.location}
             handleOnChange={this.handleOnChange}
             handleOnSubmit={this.handleOnSubmit}
+            disableSaveLocation={this.state.disableSaveLocation}
+            handleDelete={this.handleDelete}
           />
         </div>
         <div className="newWeatherStyles">
           {this.props.location.map((newLocation, index) => {
-            return <NewWeather key={index} newLocation={newLocation} />;
+            return (
+              <NewWeather
+                key={index}
+                newLocation={newLocation}
+                location={this.state.location}
+              />
+            );
           })}
         </div>
       </div>
@@ -67,5 +85,5 @@ const mapStateToProps = state => {
 
 export default connect(
   mapStateToProps,
-  { getCurrentWeather, searchLocation }
+  { getCurrentWeather, searchLocation, deleteLocation }
 )(CurrentWeather);

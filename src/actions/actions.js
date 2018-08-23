@@ -9,6 +9,7 @@ const GEOCODE_URL = `http://open.mapquestapi.com/geocoding/v1/address?key=${KEY}
 export const GET_CURRENT_WEATHER = 'GET_CURRENT_WEATHER';
 export const GET_NEW_LOCATION_WEATHER = 'GET_NEW_LOCATION_WEATHER';
 export const SEARCH_LOCATION = 'SEARCH_LOCATION';
+export const DELETE_LOCATION = 'DELETE_LOCATION';
 
 export const WEATHER_ERROR = 'WEATHER_ERROR';
 export const LOCATION_ERROR = 'LOCATION_ERROR';
@@ -77,5 +78,12 @@ export const searchLocation = location => {
       .catch(() => {
         dispatch(locationError('Failed to geocode location'));
       });
+  };
+};
+
+export const deleteLocation = location => {
+  return {
+    type: DELETE_LOCATION,
+    payload: location
   };
 };

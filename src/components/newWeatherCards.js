@@ -45,7 +45,6 @@ const NewWeatherCard = props => {
               .unix(props.newCurrentWeather.time)
               .utc()
               .format('ddd, DDMMM')}
-            {console.log(props.newCurrentWeather)}
           </Typography>
           <Typography className={`${classes.textSize} ${classes.textStyle}`}>
             {props.newCurrentWeather.temperatureMax.toFixed(0)}
@@ -55,7 +54,6 @@ const NewWeatherCard = props => {
             {props.newCurrentWeather.temperatureMin.toFixed(0)}
             &deg;
           </Typography>
-          <Typography component="p" />
         </CardContent>
       </Card>
     </div>
