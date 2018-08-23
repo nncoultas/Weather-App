@@ -37,18 +37,22 @@ class CurrentWeather extends Component {
 
   render() {
     return (
-      <div className="weatherStyles">
-        {this.props.weather.map((currentWeather, index) => {
-          return <WeatherCard key={index} currentWeather={currentWeather} />;
-        })}
-        <SearchLocation
-          location={this.state.location}
-          handleOnChange={this.handleOnChange}
-          handleOnSubmit={this.handleOnSubmit}
-        />
-        {this.props.location.map((newLocation, index) => {
-          return <NewWeather key={index} newLocation={newLocation} />;
-        })}
+      <div>
+        <div className="weatherStyles">
+          {this.props.weather.map((currentWeather, index) => {
+            return <WeatherCard key={index} currentWeather={currentWeather} />;
+          })}
+          <SearchLocation
+            location={this.state.location}
+            handleOnChange={this.handleOnChange}
+            handleOnSubmit={this.handleOnSubmit}
+          />
+        </div>
+        <div className="newWeatherStyles">
+          {this.props.location.map((newLocation, index) => {
+            return <NewWeather key={index} newLocation={newLocation} />;
+          })}
+        </div>
       </div>
     );
   }

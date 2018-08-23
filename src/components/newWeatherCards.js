@@ -10,7 +10,7 @@ import moment from 'moment';
 const styles = {
   card: {
     width: '75%',
-    height: '65%',
+    height: '39%',
     marginTop: '5%'
   },
   weatherWrapper: {
@@ -34,7 +34,7 @@ const styles = {
   }
 };
 
-const WeatherCard = props => {
+const NewWeatherCard = props => {
   const { classes } = props;
   return (
     <div className={classes.weatherWrapper}>
@@ -42,16 +42,17 @@ const WeatherCard = props => {
         <CardContent>
           <Typography className={classes.dateStyle}>
             {moment
-              .unix(props.currentWeather.time)
+              .unix(props.newCurrentWeather.time)
               .utc()
               .format('ddd, DDMMM')}
+            {console.log(props.newCurrentWeather)}
           </Typography>
           <Typography className={`${classes.textSize} ${classes.textStyle}`}>
-            {props.currentWeather.temperatureMax.toFixed(0)}
+            {props.newCurrentWeather.temperatureMax.toFixed(0)}
             &deg;
           </Typography>
           <Typography className={classes.textSize} color="textSecondary">
-            {props.currentWeather.temperatureMin.toFixed(0)}
+            {props.newCurrentWeather.temperatureMin.toFixed(0)}
             &deg;
           </Typography>
           <Typography component="p" />
@@ -61,8 +62,8 @@ const WeatherCard = props => {
   );
 };
 
-WeatherCard.propTypes = {
+NewWeatherCard.propTypes = {
   classes: PropTypes.object.isRequired
 };
 
-export default withStyles(styles)(WeatherCard);
+export default withStyles(styles)(NewWeatherCard);
