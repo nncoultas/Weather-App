@@ -1,10 +1,11 @@
 import { GET_CURRENT_WEATHER } from '../actions/actions';
 
-export const weatherReducer = (current = [], action) => {
+export const weatherReducer = (weather = [], action) => {
   switch (action.type) {
     case GET_CURRENT_WEATHER:
-      return { ...current, current: action.payload.data };
+      console.log(action);
+      return action.payload.daily.data.slice(0, 5);
     default:
-      return current;
+      return weather;
   }
 };

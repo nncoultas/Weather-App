@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getCurrentWeather } from '../actions/actions.js';
+import WeatherCard from '../components/weatherCards';
+import './currentWeather.css';
 
 class CurrentWeather extends Component {
   componentDidMount() {
@@ -18,13 +20,20 @@ class CurrentWeather extends Component {
   }
 
   render() {
-    return <div>{console.log(this.props)}</div>;
+    return (
+      <div className="weatherStyles">
+        {console.log(this.props)}
+        {this.props.weather.map((currentWeather, index) => {
+          return <WeatherCard key={index} currentWeather={currentWeather} />;
+        })}
+      </div>
+    );
   }
 }
 
 function mapStateToProps(state) {
   return {
-    weather: state.weather.current
+    weather: state.weather
   };
 }
 

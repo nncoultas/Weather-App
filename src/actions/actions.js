@@ -1,6 +1,7 @@
 import key from '../config';
 import axios from 'axios';
 
+const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const ROOT_URL = `https://api.darksky.net/forecast/${key}/`;
 
 export const GET_CURRENT_WEATHER = 'GET_CURRENT_WEATHER';
@@ -18,7 +19,8 @@ export const getCurrentWeather = (lat, long) => {
   return dispatch => {
     axios
       .get(
-        `${ROOT_URL}latitude=${lat},longitude=${long}?exclude=minutely,hourly,daily,flags`
+        `${PROXY_URL}` +
+          `${ROOT_URL}${lat},${long}?exclude=minutely,hourly,flags`
       )
       .then(response => {
         dispatch({
