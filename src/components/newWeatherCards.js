@@ -14,7 +14,7 @@ const styles = {
     marginTop: '5%'
   },
   weatherWrapper: {
-    height: '100%',
+    height: '269%',
     width: '100%',
     display: 'flex',
     justifyContent: 'center'
@@ -31,6 +31,9 @@ const styles = {
     color: 'white',
     height: '14%',
     fontSize: '2rem'
+  },
+  footer: {
+    marginTop: '25%'
   }
 };
 
@@ -44,7 +47,7 @@ const NewWeatherCard = props => {
             {moment
               .unix(props.newCurrentWeather.time)
               .utc()
-              .format('ddd, DDMMM')}
+              .format('ddd, DD MMM')}
           </Typography>
           <Typography className={`${classes.textSize} ${classes.textStyle}`}>
             {props.newCurrentWeather.temperatureMax.toFixed(0)}
@@ -53,6 +56,9 @@ const NewWeatherCard = props => {
           <Typography className={classes.textSize} color="textSecondary">
             {props.newCurrentWeather.temperatureMin.toFixed(0)}
             &deg;
+          </Typography>
+          <Typography component="p" className={classes.footer}>
+            Weather For {props.location}
           </Typography>
         </CardContent>
       </Card>

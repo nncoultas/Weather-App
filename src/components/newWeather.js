@@ -16,10 +16,8 @@ class NewWeather extends Component {
   render() {
     return (
       <div className="newWeatherStyles">
-        <div className="locationHeader">
-          Current weather for:
-          <br />
-          {this.props.location}
+        <div component="p" className="notice">
+          Please click "Delete Location" to add a different City, State
         </div>
         {this.props.newWeather.map((newCurrentWeather, index) => {
           return (

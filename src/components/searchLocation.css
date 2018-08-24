@@ -1,0 +1,4 @@
+.searchLocation {
+  display: flex;
+  flex-direction: column;
+}

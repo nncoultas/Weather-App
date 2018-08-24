@@ -6,11 +6,16 @@ import Typography from '@material-ui/core/Typography';
 class TitleBar extends Component {
   render() {
     return (
-      <AppBar position="static" color="default">
-        <Typography variant="title" color="inherit">
-          Current weather for your location
+      <Typography>
+        <AppBar position="static" color="default">
+          <Typography variant="title" color="inherit">
+            Current weather for your location
+          </Typography>
+        </AppBar>
+        <Typography>
+          Powered by <a href="https://darksky.net/dev/">Dark Sky API</a>
         </Typography>
-      </AppBar>
+      </Typography>
     );
   }
 }

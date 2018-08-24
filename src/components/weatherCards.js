@@ -44,7 +44,7 @@ const WeatherCard = props => {
             {moment
               .unix(props.currentWeather.time)
               .utc()
-              .format('ddd, DDMMM')}
+              .format('ddd, DD MMM')}
           </Typography>
           <Typography className={`${classes.textSize} ${classes.textStyle}`}>
             {props.currentWeather.temperatureMax.toFixed(0)}

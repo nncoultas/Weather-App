@@ -3,11 +3,12 @@ import { deleteLocation } from '../actions/actions';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import './searchLocation.css';
 
 class SearchLocation extends Component {
   render() {
     return (
-      <form className="SearchLocation" onSubmit={this.props.handleOnSubmit}>
+      <form className="searchLocation" onSubmit={this.props.handleOnSubmit}>
         <TextField
           type="text"
           id="location"
@@ -21,11 +22,16 @@ class SearchLocation extends Component {
         <Button
           variant="contained"
           type="submit"
+          color="primary"
           disabled={this.props.disableSaveLocation}
         >
           Save Location
         </Button>
-        <Button variant="contained" onClick={this.props.handleDelete}>
+        <Button
+          color="primary"
+          variant="contained"
+          onClick={this.props.handleDelete}
+        >
           Delete Location
         </Button>
       </form>

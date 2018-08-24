@@ -23,6 +23,7 @@ class CurrentWeather extends Component {
   currentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
+        console.log(position);
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
         this.props.getCurrentWeather(lat, lng);
@@ -52,13 +53,6 @@ class CurrentWeather extends Component {
           {this.props.weather.map((currentWeather, index) => {
             return <WeatherCard key={index} currentWeather={currentWeather} />;
           })}
-          <SearchLocation
-            location={this.state.location}
-            handleOnChange={this.handleOnChange}
-            handleOnSubmit={this.handleOnSubmit}
-            disableSaveLocation={this.state.disableSaveLocation}
-            handleDelete={this.handleDelete}
-          />
         </div>
         <div className="newWeatherStyles">
           {this.props.location.map((newLocation, index) => {
@@ -70,6 +64,15 @@ class CurrentWeather extends Component {
               />
             );
           })}
+        </div>
+        <div className="search">
+          <SearchLocation
+            location={this.state.location}
+            handleOnChange={this.handleOnChange}
+            handleOnSubmit={this.handleOnSubmit}
+            disableSaveLocation={this.state.disableSaveLocation}
+            handleDelete={this.handleDelete}
+          />
         </div>
       </div>
     );
