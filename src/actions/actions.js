@@ -4,7 +4,7 @@ import axios from 'axios';
 
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const ROOT_URL = `https://api.darksky.net/forecast/${darkSkyKey}/`;
-const GEOCODE_URL = `http://open.mapquestapi.com/geocoding/v1/address?key=${KEY}`;
+const GEOCODE_URL = `https://open.mapquestapi.com/geocoding/v1/address?key=${KEY}`;
 
 export const GET_CURRENT_WEATHER = 'GET_CURRENT_WEATHER';
 export const GET_NEW_LOCATION_WEATHER = 'GET_NEW_LOCATION_WEATHER';

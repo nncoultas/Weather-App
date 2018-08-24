@@ -23,7 +23,6 @@ class CurrentWeather extends Component {
   currentLocation() {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(position => {
-        console.log(position);
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
         this.props.getCurrentWeather(lat, lng);
