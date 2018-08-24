@@ -46,6 +46,8 @@ class CurrentWeather extends Component {
   };
 
   render() {
+    const isEnabled =
+      this.state.location.length > 0 && !this.state.disableSaveLocation;
     return (
       <div>
         <div className="weatherStyles">
@@ -71,6 +73,7 @@ class CurrentWeather extends Component {
             handleOnSubmit={this.handleOnSubmit}
             disableSaveLocation={this.state.disableSaveLocation}
             handleDelete={this.handleDelete}
+            isEnabled={isEnabled}
           />
         </div>
       </div>

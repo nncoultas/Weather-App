@@ -23,7 +23,7 @@ class SearchLocation extends Component {
           variant="contained"
           type="submit"
           color="primary"
-          disabled={this.props.disableSaveLocation}
+          disabled={!this.props.isEnabled}
         >
           Save Location
         </Button>
