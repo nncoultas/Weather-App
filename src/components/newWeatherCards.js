@@ -17,7 +17,9 @@ const styles = {
     height: '269%',
     width: '100%',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundImage:
+      'linear-gradient(to top, #59cdcd, #3cc2d0, #5bdcf5, #089ec3, #16b4d3)'
   },
   textSize: {
     fontSize: '2.5rem'
