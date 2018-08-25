@@ -1,6 +1,7 @@
 .weatherStyles {
   display: flex;
   height: 53vh;
+  margin-top: 2%;
 }
 .newWeatherStyles {
   display: flex;
@@ -10,5 +11,22 @@
 }
 .search {
   display: flex;
-  justify-content: center;
+  margin-top: -1%;
+  margin-left: 60%;
+}
+.currentLocation {
+  position: absolute;
+  width: 100%;
+  margin-top: -2%;
+  font-size: 1.5rem;
+}
+.background {
+  background-image: linear-gradient(
+    to top,
+    #8fcfec,
+    #76c1e6,
+    #5bb3e1,
+    #3ca5db,
+    #169dd8
+  );
 }

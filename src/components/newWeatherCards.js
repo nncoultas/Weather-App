@@ -19,20 +19,21 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     backgroundImage:
-      'linear-gradient(to top, #59cdcd, #3cc2d0, #5bdcf5, #089ec3, #16b4d3)'
+      'linear-gradient( to top, #8fcfec, #76c1e6, #5bb3e1, #3ca5db, #5db4e1 );'
   },
   textSize: {
     fontSize: '2.5rem'
   },
   textStyle: {
-    marginTop: '19%',
-    marginBottom: '16%'
+    marginTop: '-2%',
+    marginBottom: '11%'
   },
   dateStyle: {
-    background: 'blue',
-    color: 'white',
+    background: '#8fcfec',
+    color: '#222428',
     height: '14%',
-    fontSize: '2rem'
+    fontSize: '2rem',
+    borderRadius: '3px'
   },
   footer: {
     marginTop: '25%'
@@ -51,16 +52,15 @@ const NewWeatherCard = props => {
               .utc()
               .format('ddd, DD MMM')}
           </Typography>
+          <Typography>High</Typography>
           <Typography className={`${classes.textSize} ${classes.textStyle}`}>
             {props.newCurrentWeather.temperatureMax.toFixed(0)}
-            &deg;
+            &deg; F
           </Typography>
+          <Typography color="textSecondary">Low</Typography>
           <Typography className={classes.textSize} color="textSecondary">
             {props.newCurrentWeather.temperatureMin.toFixed(0)}
-            &deg;
-          </Typography>
-          <Typography component="p" className={classes.footer}>
-            Weather For {props.location}
+            &deg; F
           </Typography>
         </CardContent>
       </Card>

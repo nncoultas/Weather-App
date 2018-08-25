@@ -3,7 +3,6 @@ import { deleteLocation } from '../actions/actions';
 import { connect } from 'react-redux';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import './searchLocation.css';
 
 class SearchLocation extends Component {
   render() {
@@ -12,9 +11,8 @@ class SearchLocation extends Component {
         <TextField
           type="text"
           id="location"
-          label="Search Location"
           onChange={this.props.handleOnChange('location')}
-          placeholder="Washington,DC"
+          placeholder="Search Location"
           InputLabelProps={{
             shrink: true
           }}
@@ -22,17 +20,17 @@ class SearchLocation extends Component {
         <Button
           variant="contained"
           type="submit"
-          color="primary"
+          color="default"
           disabled={!this.props.isEnabled}
         >
-          Save Location
+          Add Location
         </Button>
         <Button
-          color="primary"
+          color="default"
           variant="contained"
           onClick={this.props.handleDelete}
         >
-          Delete Location
+          Remove {this.props.location}
         </Button>
       </form>
     );
@@ -41,8 +39,7 @@ class SearchLocation extends Component {
 
 const mapStateToProps = state => {
   return {
-    newWeather: state.newWeather,
-    location: state.location
+    newWeather: state.newWeather
   };
 };
 

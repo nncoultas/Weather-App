@@ -3,12 +3,15 @@ import { connect } from 'react-redux';
 import {
   getCurrentWeather,
   searchLocation,
-  deleteLocation
+  deleteLocation,
+  currentCityState
 } from '../actions/actions.js';
 import WeatherCard from '../components/weatherCards';
 import NewWeather from '../components/newWeather';
 import SearchLocation from '../components/searchLocation';
 import './currentWeather.css';
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
 
 class CurrentWeather extends Component {
   state = {
@@ -18,6 +21,7 @@ class CurrentWeather extends Component {
 
   componentDidMount() {
     this.currentLocation();
+    this.getCurrentCityState();
   }
 
   currentLocation() {
@@ -26,6 +30,16 @@ class CurrentWeather extends Component {
         let lat = position.coords.latitude;
         let lng = position.coords.longitude;
         this.props.getCurrentWeather(lat, lng);
+      });
+    }
+  }
+
+  getCurrentCityState() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(position => {
+        let lat = position.coords.latitude;
+        let lng = position.coords.longitude;
+        this.props.currentCityState(lat, lng);
       });
     }
   }
@@ -49,7 +63,23 @@ class CurrentWeather extends Component {
     const isEnabled =
       this.state.location.length > 0 && !this.state.disableSaveLocation;
     return (
-      <div>
+      <div className="background">
+        <AppBar color="default">
+          <Typography variant="title" color="inherit">
+            Current weather for {this.props.cityState.adminArea5},
+            {this.props.cityState.adminArea3}
+          </Typography>
+          <div className="search">
+            <SearchLocation
+              location={this.state.location}
+              handleOnChange={this.handleOnChange}
+              handleOnSubmit={this.handleOnSubmit}
+              disableSaveLocation={this.state.disableSaveLocation}
+              handleDelete={this.handleDelete}
+              isEnabled={isEnabled}
+            />
+          </div>
+        </AppBar>
         <div className="weatherStyles">
           {this.props.weather.map((currentWeather, index) => {
             return <WeatherCard key={index} currentWeather={currentWeather} />;
@@ -66,16 +96,6 @@ class CurrentWeather extends Component {
             );
           })}
         </div>
-        <div className="search">
-          <SearchLocation
-            location={this.state.location}
-            handleOnChange={this.handleOnChange}
-            handleOnSubmit={this.handleOnSubmit}
-            disableSaveLocation={this.state.disableSaveLocation}
-            handleDelete={this.handleDelete}
-            isEnabled={isEnabled}
-          />
-        </div>
       </div>
     );
   }
@@ -84,11 +104,12 @@ class CurrentWeather extends Component {
 const mapStateToProps = state => {
   return {
     weather: state.weather,
-    location: state.location
+    location: state.location,
+    cityState: state.cityState
   };
 };
 
 export default connect(
   mapStateToProps,
-  { getCurrentWeather, searchLocation, deleteLocation }
+  { getCurrentWeather, searchLocation, deleteLocation, currentCityState }
 )(CurrentWeather);

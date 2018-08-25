@@ -23,14 +23,15 @@ const styles = {
     fontSize: '2.5rem'
   },
   textStyle: {
-    marginTop: '19%',
-    marginBottom: '16%'
+    marginTop: '-2%',
+    marginBottom: '11%'
   },
   dateStyle: {
-    background: 'blue',
-    color: 'white',
+    background: '#8fcfec',
+    color: '#222428',
     height: '14%',
-    fontSize: '2rem'
+    fontSize: '2rem',
+    borderRadius: '3px'
   }
 };
 
@@ -46,15 +47,16 @@ const WeatherCard = props => {
               .utc()
               .format('ddd, DD MMM')}
           </Typography>
+          <Typography>High</Typography>
           <Typography className={`${classes.textSize} ${classes.textStyle}`}>
             {props.currentWeather.temperatureMax.toFixed(0)}
-            &deg;
+            &deg; F
           </Typography>
+          <Typography color="textSecondary">Low</Typography>
           <Typography className={classes.textSize} color="textSecondary">
             {props.currentWeather.temperatureMin.toFixed(0)}
-            &deg;
+            &deg; F
           </Typography>
-          <Typography component="p" />
         </CardContent>
       </Card>
     </div>

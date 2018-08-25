@@ -5,8 +5,10 @@ import axios from 'axios';
 const PROXY_URL = 'https://cors-anywhere.herokuapp.com/';
 const ROOT_URL = `https://api.darksky.net/forecast/${darkSkyKey}/`;
 const GEOCODE_URL = `https://open.mapquestapi.com/geocoding/v1/address?key=${KEY}`;
+const REVERSE_GEOCODE_URL = `https://www.mapquestapi.com/geocoding/v1/reverse?key=${KEY}`;
 
 export const GET_CURRENT_WEATHER = 'GET_CURRENT_WEATHER';
+export const GET_CURRENT_CITYSTATE = 'GET_CURRENT_CITYSTATE';
 export const GET_NEW_LOCATION_WEATHER = 'GET_NEW_LOCATION_WEATHER';
 export const SEARCH_LOCATION = 'SEARCH_LOCATION';
 export const DELETE_LOCATION = 'DELETE_LOCATION';
@@ -62,6 +64,26 @@ export const getNewLocationWeather = (lat, lng) => {
       })
       .catch(() => {
         dispatch(weatherError('Failed to read coordinates'));
+      });
+  };
+};
+
+export const currentCityState = (lat, lng) => {
+  return dispatch => {
+    axios
+      .get(
+        `${REVERSE_GEOCODE_URL}&location=${lat}%2C${lng}&outFormat=json&thumbMaps=false`
+      )
+      .then(response => {
+        dispatch({
+          type: GET_CURRENT_CITYSTATE,
+          payload: response.data
+        });
+      })
+      .catch(() => {
+        dispatch(
+          locationError('Failed to get City,State for current location')
+        );
       });
   };
 };

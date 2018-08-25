@@ -16,9 +16,11 @@ class NewWeather extends Component {
   render() {
     return (
       <div className="newWeatherStyles">
-        <div component="p" className="notice">
-          Please click "Delete Location" to add a different City, State
+        <div component="p" className="noticeTwo">
+          Please click "Remove {this.props.location}" to add a different City,
+          State
         </div>
+        <div className="notice">Current weather for {this.props.location}</div>
         {this.props.newWeather.map((newCurrentWeather, index) => {
           return (
             <NewWeatherCard

@@ -6,8 +6,15 @@
 }
 .notice {
   position: absolute;
-  color: red;
   justify-content: center;
   width: 100%;
-  margin-top: -1%;
+  margin-top: -2%;
+  font-size: 1.5rem;
+}
+.noticeTwo {
+  color: red;
+  position: absolute;
+  justify-content: center;
+  width: 100%;
+  margin-top: -0.5%;
 }
