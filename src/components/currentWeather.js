@@ -6,6 +6,7 @@ import {
   deleteLocation,
   currentCityState
 } from '../actions/actions.js';
+import { withStyles } from '@material-ui/core/styles';
 import WeatherCard from '../components/weatherCards';
 import NewWeather from '../components/newWeather';
 import SearchLocation from '../components/searchLocation';
@@ -13,10 +14,22 @@ import './currentWeather.css';
 import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 
+const styles = {
+  title: {
+    position: 'absolute',
+    width: '100%',
+    marginTop: '-1%'
+  },
+  appBar: {
+    marginTop: '2%'
+  }
+};
+
 class CurrentWeather extends Component {
   state = {
     location: '',
-    disableSaveLocation: false
+    disableSaveLocation: false,
+    open: false
   };
 
   componentDidMount() {
@@ -50,7 +63,11 @@ class CurrentWeather extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    this.setState({ location: this.state.location, disableSaveLocation: true });
+    this.setState({
+      location: this.state.location,
+      disableSaveLocation: true,
+      open: false
+    });
     this.props.searchLocation(this.state.location);
   };
 
@@ -59,13 +76,22 @@ class CurrentWeather extends Component {
     this.props.deleteLocation();
   };
 
+  handleOpen = () => {
+    this.setState({ open: true });
+  };
+
+  handleClose = () => {
+    this.setState({ open: false });
+  };
+
   render() {
+    const { classes } = this.props;
     const isEnabled =
       this.state.location.length > 0 && !this.state.disableSaveLocation;
     return (
       <div className="background">
-        <AppBar color="default">
-          <Typography variant="title" color="inherit">
+        <AppBar color="default" className={classes.appBar}>
+          <Typography variant="title" color="inherit" className={classes.title}>
             Current weather for {this.props.cityState.adminArea5},
             {this.props.cityState.adminArea3}
           </Typography>
@@ -76,6 +102,9 @@ class CurrentWeather extends Component {
               handleOnSubmit={this.handleOnSubmit}
               disableSaveLocation={this.state.disableSaveLocation}
               handleDelete={this.handleDelete}
+              handleOpen={this.handleOpen}
+              handleClose={this.handleClose}
+              open={this.state.open}
               isEnabled={isEnabled}
             />
           </div>
@@ -109,7 +138,9 @@ const mapStateToProps = state => {
   };
 };
 
+const CurrentWeatherStyles = withStyles(styles)(CurrentWeather);
+
 export default connect(
   mapStateToProps,
   { getCurrentWeather, searchLocation, deleteLocation, currentCityState }
-)(CurrentWeather);
+)(CurrentWeatherStyles);
