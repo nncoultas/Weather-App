@@ -34,6 +34,12 @@ const styles = theme => ({
   },
   remove: {
     marginTop: '-0.5%'
+  },
+  modalButton: {
+    marginTop: '2%'
+  },
+  modalInput: {
+    marginTop: '11%'
   }
 });
 
@@ -63,6 +69,7 @@ class SearchLocation extends Component {
               Search by City,State (i.e Mesa,AZ)
             </Typography>
             <TextField
+              className={classes.modalInput}
               type="text"
               id="location"
               onChange={this.props.handleOnChange('location')}
@@ -71,22 +78,26 @@ class SearchLocation extends Component {
                 shrink: true
               }}
             />
-            <Button
-              variant="contained"
-              type="submit"
-              color="default"
-              onClick={this.props.handleOnSubmit}
-              disabled={!this.props.isEnabled}
-            >
-              Add Location
-            </Button>
-            <Button
-              variant="contained"
-              color="default"
-              onClick={this.props.handleClose}
-            >
-              Close
-            </Button>
+            <MuiThemeProvider theme={theme}>
+              <Button
+                className={classes.modalButton}
+                variant="contained"
+                type="submit"
+                color="secondary"
+                onClick={this.props.handleOnSubmit}
+                disabled={!this.props.isEnabled}
+              >
+                Add Location
+              </Button>
+              <Button
+                className={classes.modalButton}
+                variant="contained"
+                color="secondary"
+                onClick={this.props.handleClose}
+              >
+                Close
+              </Button>
+            </MuiThemeProvider>
           </div>
         </Modal>
         <MuiThemeProvider theme={theme}>
